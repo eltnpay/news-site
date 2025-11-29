@@ -1,0 +1,41 @@
+{% extends 'news/base.html' %}
+{% load static %}
+
+{% block title %}{{ new.title }} - News Portal{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/news_detail.css' %}">
+{% endblock %}
+
+{% block content %}
+<article class="article-container">
+    <div class="article-header">
+        <a href="/" class="back-button">← Назад к новостям</a>
+        
+        <h1 class="article-title">{{ new.title }}</h1>
+        
+        <div class="article-meta">
+            <span class="meta-item">📅 {{ new.published_time|date:"d F Y" }}</span>
+            <span class="meta-item">🏷️ {{ new.category }}</span>
+        </div>
+    </div>
+
+    <div class="article-gallery">
+        {% for img in new.image.all %}
+            <img src="{{ img.image.url }}" alt="{{ new.title }}" class="article-image">
+        {% empty %}
+            <div class="no-images-placeholder">📸 Изображения не добавлены</div>
+        {% endfor %}
+    </div>
+
+    <div class="article-body">
+        <div class="article-text">
+            {{ new.text|linebreaks }}
+        </div>
+    </div>
+</article>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/news_detail.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,222 @@
+/* ========== ARTICLE CONTAINER ========== */
+.article-container {
+    max-width: 900px;
+    margin: 0 auto;
+    animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* ========== BACK BUTTON ========== */
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #6366f1;
+    text-decoration: none;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    transition: all 0.3s ease;
+    padding: 0.75rem 1.5rem;
+    background: rgba(99, 102, 241, 0.1);
+    border-radius: 12px;
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    animation: slideInLeft 0.6s ease-out;
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.back-button:hover {
+    background: rgba(99, 102, 241, 0.2);
+    border-color: rgba(99, 102, 241, 0.6);
+    transform: translateX(-5px);
+}
+
+/* ========== ARTICLE HEADER ========== */
+.article-header {
+    margin-bottom: 2.5rem;
+    animation: slideInDown 0.6s ease-out 0.1s both;
+}
+
+@keyframes slideInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.article-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 1.5rem 0;
+    line-height: 1.2;
+}
+
+/* ========== ARTICLE META ========== */
+.article-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding: 1.5rem;
+    background: rgba(99, 102, 241, 0.1);
+    border-radius: 12px;
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    animation: slideInUp 0.6s ease-out 0.2s both;
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    color: #cbd5e1;
+}
+
+.meta-item::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: linear-gradient(135deg, #6366f1, #ec4899);
+    border-radius: 50%;
+}
+
+/* ========== ARTICLE GALLERY ========== */
+.article-gallery {
+    margin: 3rem 0;
+    animation: zoomIn 0.8s ease-out 0.3s both;
+}
+
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.article-image {
+    width: 100%;
+    height: auto;
+    max-height: 600px;
+    object-fit: cover;
+    border-radius: 16px;
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    margin-bottom: 1.5rem;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.article-image:hover {
+    transform: scale(1.02);
+}
+
+.article-image:last-of-type {
+    margin-bottom: 0;
+}
+
+.no-images-placeholder {
+    width: 100%;
+    padding: 4rem 2rem;
+    text-align: center;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+    border-radius: 16px;
+    border: 2px dashed rgba(99, 102, 241, 0.3);
+    font-size: 2rem;
+    color: #cbd5e1;
+}
+
+/* ========== ARTICLE BODY ========== */
+.article-body {
+    animation: fadeIn 0.8s ease-out 0.4s both;
+}
+
+.article-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #cbd5e1;
+    margin-top: 2rem;
+}
+
+.article-text p {
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.article-text p:first-letter {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #6366f1;
+}
+
+.article-text em {
+    color: #ec4899;
+    font-style: italic;
+}
+
+.article-text strong {
+    color: #f59e0b;
+    font-weight: 700;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+    .article-title {
+        font-size: 2rem;
+    }
+
+    .article-meta {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .article-text {
+        font-size: 1rem;
+    }
+
+    .article-image {
+        max-height: none;
+    }
+
+    .back-button {
+        margin-bottom: 1.5rem;
+        font-size: 0.9rem;
+        padding: 0.6rem 1rem;
+    }
+}

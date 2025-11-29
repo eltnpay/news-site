@@ -1,0 +1,86 @@
+{% extends 'news/base.html' %}
+{% load static %}
+
+{% block title %}Вход - News Portal{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="auth-card">
+        <div class="auth-header">
+            <h1 class="auth-title">Добро пожаловать</h1>
+            <p class="auth-subtitle">Войди в свой аккаунт</p>
+        </div>
+
+        {% if form.non_field_errors %}
+            <div class="form-error">
+                {{ form.non_field_errors.0 }}
+            </div>
+        {% endif %}
+
+        <form method="post" class="auth-form">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label for="id_username">Имя пользователя</label>
+                {{ form.username }}
+                {% if form.username.errors %}
+                    <span class="error">{{ form.username.errors.0 }}</span>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="id_password">Пароль</label>
+                {{ form.password }}
+                {% if form.password.errors %}
+                    <span class="error">{{ form.password.errors.0 }}</span>
+                {% endif %}
+            </div>
+
+            <div class="form-remember">
+                <input type="checkbox" id="remember" name="remember">
+                <label for="remember">Запомнить меня</label>
+            </div>
+
+            <button type="submit" class="submit-btn">Войти</button>
+        </form>
+
+        <div class="auth-divider">
+            <span>или</span>
+        </div>
+
+        <div class="social-auth">
+            <button class="social-btn google-btn" disabled title="Coming soon">
+                <span>🔗</span> Google
+            </button>
+            <button class="social-btn github-btn" disabled title="Coming soon">
+                <span>🔗</span> GitHub
+            </button>
+        </div>
+
+        <div class="auth-footer">
+            <p>Нет аккаунта? <a href="/reg/">Зарегистрироваться</a></p>
+            <p class="forgot-password"><a href="#">Забыл пароль?</a></p>
+        </div>
+    </div>
+
+    <div class="auth-banner">
+        <div class="banner-content">
+            <h2>📰 NewsHub</h2>
+            <p>Будь в курсе всех самых свежих новостей</p>
+            <div class="banner-features">
+                <div class="feature">✨ Быстрые обновления</div>
+                <div class="feature">🎯 Персональные подборки</div>
+                <div class="feature">🔔 Уведомления</div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/login.js' %}"></script>
+{% endblock %}

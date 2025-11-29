@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}News Portal{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <span class="logo-icon">📰</span>
+                <span class="logo-text">NewsHub</span>
+            </div>
+            <nav class="nav">
+                <a href="/" class="nav-link">Главная</a>
+                {% if user.is_authenticated %}
+                <a href="/logout"> Выход </a>
+                {% else %}
+                <a href="/login/" class="nav-link nav-login-btn">Вход</a>
+                {% endif %}
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <p>&copy; 2025 NewsHub. Все права защищены.</p>
+            <p>Твой источник актуальных новостей</p>
+        </div>
+    </footer>
+
+    <script src="{% static 'js/base.js' %}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

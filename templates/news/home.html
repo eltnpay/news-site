@@ -1,0 +1,54 @@
+{% extends 'news/base.html' %}
+{% load static %}
+
+{% block title %}Главная - News Portal{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-content">
+        <h1 class="hero-title">Будь в курсе событий</h1>
+        <p class="hero-subtitle">Свежие новости каждый день</p>
+    </div>
+</section>
+
+<section class="news-section">
+    <div class="container">
+        <h2 class="section-title">Последние новости</h2>
+        
+        <div class="news-grid">
+            {% for i in news %}
+                <article class="news-card">
+                    <a href="{% url 'news_detail' i.id %}" class="news-card-link">
+                        <div class="news-image-wrapper">
+                            {% if i.image.all %}
+                                {% for img in i.image.all|slice:":1" %}
+                                    <img src="{{ img.image.url }}" alt="{{ i.title }}" class="news-image">
+                                {% endfor %}
+                            {% else %}
+                                <div class="no-image">📸</div>
+                            {% endif %}
+                            <div class="news-overlay"></div>
+                        </div>
+                        <div class="news-content">
+                            <h3 class="news-title">{{ i.title }}</h3>
+                            <p class="news-date">{{ i.published_time|date:"d M Y" }}</p>
+                        </div>
+                    </a>
+                </article>
+            {% empty %}
+                <div class="no-news">
+                    <p>📭 Новостей пока нет</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/home.js' %}"></script>
+{% endblock %}
