@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login,logout
 from django.shortcuts import render,get_object_or_404
-from .forms import RegistrationForm, LoginForm, ReviewForm
+from .forms import RegistrationForm, LoginForm, ReviewForm, Comments
 from .models import News
 
 def homepage(request):
@@ -40,5 +40,28 @@ def log_out(request):
 
 def news_detail(request, news_id):
     new = get_object_or_404(News, id=news_id)
+    comments = Comments.objects.filter(news=new)
 
-    return render(request, 'news/news_detail.html', {'new': new})
+    if request.method == 'POST':
+        if not request.user.is_authenticated:
+            return redirect('login')
+
+        forms = ReviewForm(request.POST)
+        if forms.is_valid():
+            comment = forms.save(commit=False)
+            comment.user = request.user
+            comment.news = new
+            comment.save()
+            return redirect('news_detail', news_id=new.id)
+    else:
+        forms = ReviewForm()
+
+    context = {
+        'new': new,
+        'comments': comments,
+        'forms': forms
+    }
+
+    return render(request, 'news/news_detail.html', context)
+
+

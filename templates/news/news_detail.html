@@ -34,6 +34,30 @@
         </div>
     </div>
 </article>
+
+<hr>
+
+<h2>Комментарии</h2>
+
+{% for c in comments %}
+<div class="comment-box">
+    <strong>{{ c.user.username }}</strong><br>
+    {{ c.text }}
+</div>
+{% empty %}
+<p>Комментариев пока нет...</p>
+{% endfor %}
+
+<hr>
+
+<h2>Оставить комментарий</h2>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ forms.as_p }}
+    <button type="submit">Отправить</button>
+</form>
+
 {% endblock %}
 
 {% block extra_js %}

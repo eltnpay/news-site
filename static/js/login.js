@@ -110,7 +110,7 @@ function addPasswordToggle() {
     
     const toggleBtn = document.createElement('button');
     toggleBtn.type = 'button';
-    toggleBtn.innerHTML = '👁️';
+    toggleBtn.innerHTML = '';
     toggleBtn.className = 'password-toggle';
     toggleBtn.style.cssText = `
         position: absolute;
@@ -135,10 +135,10 @@ function addPasswordToggle() {
         
         if (passwordInput.type === 'password') {
             passwordInput.type = 'text';
-            toggleBtn.innerHTML = '👁️‍🗨️';
+            toggleBtn.innerHTML = '';
         } else {
             passwordInput.type = 'password';
-            toggleBtn.innerHTML = '👁️';
+            toggleBtn.innerHTML = '';
         }
     });
     
