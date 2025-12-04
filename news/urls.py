@@ -8,3 +8,5 @@ urlpatterns = [
     path('logout/',log_out, name='logout'),
     path('news/<int:news_id>/', news_detail, name='news_detail'),
 ]
+
+
